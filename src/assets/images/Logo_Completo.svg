@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- Logo Completo para Login -->
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#621923;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9d4365;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Círculo de fondo -->
+  <circle cx="80" cy="100" r="70" fill="url(#grad2)" />
+  
+  <!-- Letra "A" principal -->
+  <text x="80" y="125" font-size="80" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial, sans-serif">
+    A
+  </text>
+  
+  <!-- Línea decorativa bajo círculo -->
+  <line x1="160" y1="142" x2="390" y2="142" stroke="#621923" stroke-width="3"/>
+  
+  <!-- Texto ALMPES -->
+  <text x="200" y="85" font-size="42" font-weight="bold" fill="#621923" font-family="Arial, sans-serif">
+    ALMPES
+  </text>
+  
+  <!-- Texto Contact Center -->
+  <text x="200" y="125" font-size="24" fill="#555555" font-family="Arial, sans-serif" letter-spacing="2">
+    CONTACT CENTER
+  </text>
+  
+  <!-- Línea decorativa inferior -->
+  <rect x="160" y="145" width="230" height="2" fill="#621923" />
+</svg>

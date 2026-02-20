@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Estilos globales tipografía */
+  h1 {
+    @apply text-4xl font-bold text-neutral-900 dark:text-white;
+  }
+
+  h2 {
+    @apply text-3xl font-bold text-neutral-900 dark:text-white;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold text-neutral-900 dark:text-white;
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-neutral-900 dark:text-white;
+  }
+
+  h5 {
+    @apply text-lg font-semibold text-neutral-900 dark:text-white;
+  }
+
+  h6 {
+    @apply text-base font-semibold text-neutral-900 dark:text-white;
+  }
+
+  p {
+    @apply text-neutral-700 dark:text-neutral-300;
+  }
+
+  a {
+    @apply text-primary-600 hover:text-primary-700 transition-colors;
+  }
+}
+
+@layer components {
+  /* Scroll personalizado */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100 dark:bg-neutral-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 dark:bg-neutral-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400 dark:bg-neutral-500;
+  }
+
+  /* Focus ring personalizado */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+  }
+
+  /* Animaciones */
+  .fade-in {
+    @apply animate-fadeIn;
+  }
+
+  .slide-in {
+    @apply animate-slideIn;
+  }
+}
+
+/* Animaciones customizadas */
+@keyframes fadeIn {
+  from {
+    @apply opacity-0;
+  }
+  to {
+    @apply opacity-100;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    @apply transform -translate-x-full;
+  }
+  to {
+    @apply transform translate-x-0;
+  }
+}
