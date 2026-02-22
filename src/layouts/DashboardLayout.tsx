@@ -1,5 +1,4 @@
-import { Header } from "@/components/molecules/Header";
-import { Sidebar } from "@/components/molecules/Sidebar";
+import { Header, Sidebar } from "@/components/layout";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;

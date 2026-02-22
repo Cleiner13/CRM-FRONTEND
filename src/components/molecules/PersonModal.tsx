@@ -1,9 +1,7 @@
 import React from "react";
-import { Button } from "@/components/atoms/Button";
-import { Input } from "@/components/atoms/Input";
-import { Badge } from "@/components/atoms/Badge";
+import { Button, Input, Badge } from "@/components/ui";
 import { X, Upload } from "lucide-react";
-import { ACTION_BUTTON_VARIANTS, PALETTE, MODAL_STYLES, INPUT_STYLES } from "@/config/styles";
+import { ACTION_BUTTON_VARIANTS, MODAL_STYLES, INPUT_STYLES } from "@/config/styles";
 
 type Person = { id: string; [key: string]: any };
 
@@ -12,7 +10,6 @@ type Props = {
   onClose: () => void;
   initialPerson?: Person | null;
   onSave: (p: Person) => void;
-  onDelete: (id: string) => void;
 };
 
 export const PersonModal: React.FC<Props> = ({
@@ -20,7 +17,6 @@ export const PersonModal: React.FC<Props> = ({
   onClose,
   initialPerson = null,
   onSave,
-  onDelete,
 }) => {
   const [form, setForm] = React.useState<Person | null>(null);
 
@@ -33,23 +29,23 @@ export const PersonModal: React.FC<Props> = ({
     }
   }, [open, initialPerson]);
 
-  const handleChange = (k: string, v: any) => {
+  const handleChange = (k: string, v: string | number | boolean) => {
     if (!form) return;
     setForm({ ...form, [k]: v });
+  };
+
+  const handleInputChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    handleChange(key, e.target.value);
+  };
+
+  const handleTextAreaChange = (key: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleChange(key, e.target.value);
   };
 
   const handleSave = () => {
     if (!form) return;
     onSave(form);
     onClose();
-  };
-
-  const handleDelete = () => {
-    if (!form || !form.id) return;
-    if (window.confirm("¿Está seguro que desea eliminar este registro?")) {
-      onDelete(form.id);
-      onClose();
-    }
   };
 
   const handleClear = () => {
@@ -93,7 +89,7 @@ export const PersonModal: React.FC<Props> = ({
                 <div className={MODAL_STYLES.section.grid}>
                   <select
                     value={form.tipo_doc ?? "DNI"}
-                    onChange={(e) => handleChange("tipo_doc", e.target.value)}
+                    onChange={handleInputChange("tipo_doc")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default}`}
                   >
                     <option>DNI</option>
@@ -102,12 +98,12 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Num Doc"
                     value={form.dni ?? ""}
-                    onChange={(e) => handleChange("dni", e.target.value)}
+                    onChange={handleInputChange("dni")}
                     variant="default"
                   />
                   <select
                     value={form.nivel_estud ?? ""}
-                    onChange={(e) => handleChange("nivel_estud", e.target.value)}
+                    onChange={handleInputChange("nivel_estud")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default}`}
                   >
                     <option>-- Nivel Estudio --</option>
@@ -119,32 +115,32 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Apellido Paterno"
                     value={form.apaterno ?? ""}
-                    onChange={(e) => handleChange("apaterno", e.target.value)}
+                    onChange={handleInputChange("apaterno")}
                   />
                   <Input
                     placeholder="Apellido Materno"
                     value={form.amaterno ?? ""}
-                    onChange={(e) => handleChange("amaterno", e.target.value)}
+                    onChange={handleInputChange("amaterno")}
                   />
                   <Input
                     type="date"
                     value={form.fecha_nac ?? ""}
-                    onChange={(e) => handleChange("fecha_nac", e.target.value)}
+                    onChange={handleInputChange("fecha_nac")}
                   />
 
                   <Input
                     placeholder="Primer Nombre"
                     value={form.pnombre ?? ""}
-                    onChange={(e) => handleChange("pnombre", e.target.value)}
+                    onChange={handleInputChange("pnombre")}
                   />
                   <Input
                     placeholder="Segundo Nombre"
                     value={form.snombre ?? ""}
-                    onChange={(e) => handleChange("snombre", e.target.value)}
+                    onChange={handleInputChange("snombre")}
                   />
                   <select
                     value={form.sexo ?? ""}
-                    onChange={(e) => handleChange("sexo", e.target.value)}
+                    onChange={handleInputChange("sexo")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default}`}
                   >
                     <option>Masculino</option>
@@ -154,17 +150,17 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Nro RUC"
                     value={form.nro_ruc ?? ""}
-                    onChange={(e) => handleChange("nro_ruc", e.target.value)}
+                    onChange={handleInputChange("nro_ruc")}
                   />
                   <Input
                     placeholder="Email"
                     type="email"
                     value={form.email ?? ""}
-                    onChange={(e) => handleChange("email", e.target.value)}
+                    onChange={handleInputChange("email")}
                   />
                   <select
                     value={form.estado_civil ?? ""}
-                    onChange={(e) => handleChange("estado_civil", e.target.value)}
+                    onChange={handleInputChange("estado_civil")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default}`}
                   >
                     <option>Soltero</option>
@@ -176,61 +172,61 @@ export const PersonModal: React.FC<Props> = ({
                     placeholder="Edad"
                     type="number"
                     value={form.edad ?? ""}
-                    onChange={(e) => handleChange("edad", e.target.value)}
+                    onChange={handleInputChange("edad")}
                   />
                   <Input
                     placeholder="Talla"
                     value={form.talla ?? ""}
-                    onChange={(e) => handleChange("talla", e.target.value)}
+                    onChange={handleInputChange("talla")}
                   />
                   <Input
                     placeholder="Hijos"
                     type="number"
                     value={form.hijos ?? ""}
-                    onChange={(e) => handleChange("hijos", e.target.value)}
+                    onChange={handleInputChange("hijos")}
                   />
 
                   <Input
                     placeholder="Nacionalidad"
                     value={form.nacionalidad ?? ""}
-                    onChange={(e) => handleChange("nacionalidad", e.target.value)}
+                    onChange={handleInputChange("nacionalidad")}
                   />
                   <Input
                     placeholder="Departamento"
                     value={form.departamento ?? ""}
-                    onChange={(e) => handleChange("departamento", e.target.value)}
+                    onChange={handleInputChange("departamento")}
                   />
                   <Input
                     placeholder="Provincia"
                     value={form.provincia ?? ""}
-                    onChange={(e) => handleChange("provincia", e.target.value)}
+                    onChange={handleInputChange("provincia")}
                   />
 
                   <Input
                     placeholder="Distrito"
                     value={form.distrito ?? ""}
-                    onChange={(e) => handleChange("distrito", e.target.value)}
+                    onChange={handleInputChange("distrito")}
                   />
                   <Input
                     placeholder="Referencia"
                     value={form.referencia ?? ""}
-                    onChange={(e) => handleChange("referencia", e.target.value)}
+                    onChange={handleInputChange("referencia")}
                   />
                   <Input
                     placeholder="Cel 1"
                     value={form.cel1 ?? ""}
-                    onChange={(e) => handleChange("cel1", e.target.value)}
+                    onChange={handleInputChange("cel1")}
                   />
 
                   <Input
                     placeholder="Cel 2"
                     value={form.cel2 ?? ""}
-                    onChange={(e) => handleChange("cel2", e.target.value)}
+                    onChange={handleInputChange("cel2")}
                   />
                   <Input
                     placeholder="T Fijo"
                     value={form.t_fijo ?? ""}
-                    onChange={(e) => handleChange("t_fijo", e.target.value)}
+                    onChange={handleInputChange("t_fijo")}
                   />
                 </div>
 
@@ -240,32 +236,32 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Origen"
                     value={form.origen ?? ""}
-                    onChange={(e) => handleChange("origen", e.target.value)}
+                    onChange={handleInputChange("origen")}
                   />
                   <Input
                     placeholder="Ref. de"
                     value={form.ref_de ?? ""}
-                    onChange={(e) => handleChange("ref_de", e.target.value)}
+                    onChange={handleInputChange("ref_de")}
                   />
                   <Input
                     placeholder="Perfil"
                     value={form.perfil ?? ""}
-                    onChange={(e) => handleChange("perfil", e.target.value)}
+                    onChange={handleInputChange("perfil")}
                   />
                   <Input
                     placeholder="Uu.nn"
                     value={form.uu_nn ?? ""}
-                    onChange={(e) => handleChange("uu_nn", e.target.value)}
+                    onChange={handleInputChange("uu_nn")}
                   />
                   <Input
                     placeholder="Area"
                     value={form.area ?? ""}
-                    onChange={(e) => handleChange("area", e.target.value)}
+                    onChange={handleInputChange("area")}
                   />
                   <Input
                     placeholder="Producto"
                     value={form.producto ?? ""}
-                    onChange={(e) => handleChange("producto", e.target.value)}
+                    onChange={handleInputChange("producto")}
                   />
                 </div>
               </div>
@@ -303,65 +299,65 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Tipo Contrato"
                     value={form.tipo_contrato ?? ""}
-                    onChange={(e) => handleChange("tipo_contrato", e.target.value)}
+                    onChange={handleInputChange("tipo_contrato")}
                   />
                   <Input
                     placeholder="Supervisor"
                     value={form.supervisor ?? ""}
-                    onChange={(e) => handleChange("supervisor", e.target.value)}
+                    onChange={handleInputChange("supervisor")}
                   />
                   <Input
                     placeholder="Jornada"
                     value={form.jornada ?? ""}
-                    onChange={(e) => handleChange("jornada", e.target.value)}
+                    onChange={handleInputChange("jornada")}
                   />
                   <Input
                     placeholder="Banco"
                     value={form.banco ?? ""}
-                    onChange={(e) => handleChange("banco", e.target.value)}
+                    onChange={handleInputChange("banco")}
                   />
                   <Input
                     placeholder="Nro de CTA"
                     value={form.nro_cta ?? ""}
-                    onChange={(e) => handleChange("nro_cta", e.target.value)}
+                    onChange={handleInputChange("nro_cta")}
                   />
                   <Input
                     type="date"
                     placeholder="Fecha Ing"
                     value={form.fecha_ing ?? ""}
-                    onChange={(e) => handleChange("fecha_ing", e.target.value)}
+                    onChange={handleInputChange("fecha_ing")}
                   />
                   <Input
                     type="date"
                     placeholder="Fecha Cambio"
                     value={form.fecha_cambio ?? ""}
-                    onChange={(e) => handleChange("fecha_cambio", e.target.value)}
+                    onChange={handleInputChange("fecha_cambio")}
                   />
                   <Input
                     type="date"
                     placeholder="Fecha Cese"
                     value={form.fecha_cese ?? ""}
-                    onChange={(e) => handleChange("fecha_cese", e.target.value)}
+                    onChange={handleInputChange("fecha_cese")}
                   />
                   <Input
                     placeholder="S. Basico"
                     value={form.s_basico ?? ""}
-                    onChange={(e) => handleChange("s_basico", e.target.value)}
+                    onChange={handleInputChange("s_basico")}
                   />
                   <Input
                     placeholder="Empresa"
                     value={form.empresa ?? ""}
-                    onChange={(e) => handleChange("empresa", e.target.value)}
+                    onChange={handleInputChange("empresa")}
                   />
                   <Input
                     placeholder="Cargo"
                     value={form.cargo ?? ""}
-                    onChange={(e) => handleChange("cargo", e.target.value)}
+                    onChange={handleInputChange("cargo")}
                   />
                   <Input
                     placeholder="Generacion"
                     value={form.generacion ?? ""}
-                    onChange={(e) => handleChange("generacion", e.target.value)}
+                    onChange={handleInputChange("generacion")}
                   />
                 </div>
               </div>
@@ -371,7 +367,7 @@ export const PersonModal: React.FC<Props> = ({
                 <div className="space-y-3 md:space-y-4">
                   <select
                     value={form.estado ?? "Activo"}
-                    onChange={(e) => handleChange("estado", e.target.value)}
+                    onChange={handleInputChange("estado")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default}`}
                   >
                     <option>Activo</option>
@@ -381,18 +377,18 @@ export const PersonModal: React.FC<Props> = ({
                   <Input
                     placeholder="Sub Estado"
                     value={form.sub_estado ?? ""}
-                    onChange={(e) => handleChange("sub_estado", e.target.value)}
+                    onChange={handleInputChange("sub_estado")}
                   />
                   <Input
                     type="date"
                     placeholder="Fecha Capacitación"
                     value={form.fecha_capacitacion ?? ""}
-                    onChange={(e) => handleChange("fecha_capacitacion", e.target.value)}
+                    onChange={handleInputChange("fecha_capacitacion")}
                   />
                   <textarea
                     placeholder="Comentario"
                     value={form.comentario ?? ""}
-                    onChange={(e) => handleChange("comentario", e.target.value)}
+                    onChange={handleTextAreaChange("comentario")}
                     className={`${INPUT_STYLES.base} ${INPUT_STYLES.variants.default} h-24 resize-none`}
                   />
                 </div>

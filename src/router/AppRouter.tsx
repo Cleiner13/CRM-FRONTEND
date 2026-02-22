@@ -3,26 +3,42 @@ import { LoginPage } from "@/pages/LoginPage";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { InboxPage } from "@/pages/InboxPage";
-import { AdminPersonalPage } from "@/pages/AdminPersonalPage";
-import { AdminComisionesPage } from "@/pages/AdminComisionesPage";
-import { AdminPagosPage } from "@/pages/AdminPagosPage";
-import { AdminReportesPersonalPage } from "@/pages/AdminReportesPersonalPage";
-import { SoportePersonalStatusPage } from "@/pages/SoportePersonalStatusPage";
-import { SoporteCargaListasPage } from "@/pages/SoporteCargaListasPage";
-import { GerenciaReporteListasPage } from "@/pages/GerenciaReporteListasPage";
-import { GerenciaReporteBasesPage } from "@/pages/GerenciaReporteBasesPage";
-import { GerenciaReporteVentasPage } from "@/pages/GerenciaReporteVentasPage";
-import { GerenciaReporteGestionPersonalPage } from "@/pages/GerenciaReporteGestionPersonalPage";
 import { DocumentosPage } from "@/pages/DocumentosPage";
-import { VentasOhTcPage } from "@/pages/VentasOhTcPage";
-import { VentasOhMaxPage } from "@/pages/VentasOhMaxPage";
-import { VentasOhPldPage } from "@/pages/VentasOhPldPage";
-import { VentasSantanderLdPage } from "@/pages/VentasSantanderLdPage";
-import { VentasSantanderTcPage } from "@/pages/VentasSantanderTcPage";
-import { VentasCencosudLdPage } from "@/pages/VentasCencosudLdPage";
-import { VentasCencosudTcPage } from "@/pages/VentasCencosudTcPage";
-import { ConfigTablasPage } from "@/pages/ConfigTablasPage";
-import { ConfigUsuariosPage } from "@/pages/ConfigUsuariosPage";
+
+// Users/Admin pages
+import {
+  AdminPersonalPage,
+  AdminComisionesPage,
+  AdminPagosPage,
+  AdminReportesPersonalPage,
+  ConfigTablasPage,
+  ConfigUsuariosPage,
+} from "@/features/users/pages";
+
+// Support pages
+import {
+  SoportePersonalStatusPage,
+  SoporteCargaListasPage,
+} from "@/features/support/pages";
+
+// Reports pages
+import {
+  GerenciaReporteListasPage,
+  GerenciaReporteBasesPage,
+  GerenciaReporteVentasPage,
+  GerenciaReporteGestionPersonalPage,
+} from "@/features/reports/pages";
+
+// Sales pages
+import {
+  VentasOhTcPage,
+  VentasOhMaxPage,
+  VentasOhPldPage,
+  VentasSantanderLdPage,
+  VentasSantanderTcPage,
+  VentasCencosudLdPage,
+  VentasCencosudTcPage,
+} from "@/features/sales/pages";
 
 export const AppRouter: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthLayout } from "@/layouts/AuthLayout";
-import { Card, Button, Input } from "@/components/atoms";
+import { Card, Button, Input } from "@/components/ui";
 import { User, Lock } from "lucide-react";
 import { LOGO_PATHS } from "@/config/theme";
 

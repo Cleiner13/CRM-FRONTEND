@@ -1,6 +1,6 @@
 import { DashboardLayout } from "@/layouts/DashboardLayout";
-import { Card, Badge } from "@/components/atoms";
-import { SectionHeader, Table } from "@/components/molecules";
+import { Card, Badge, Table } from "@/components/ui";
+import { SectionHeader } from "@/components/molecules";
 import { TrendingUp, Users, ShoppingCart, BarChart4, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 export const DashboardPage: React.FC = () => {

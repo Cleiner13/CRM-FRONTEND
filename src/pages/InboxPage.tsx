@@ -1,6 +1,6 @@
 import React from "react";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
-import { Card } from "@/components/atoms";
+import { Card } from "@/components/ui";
 
 export const InboxPage: React.FC = () => {
   const messages = [
